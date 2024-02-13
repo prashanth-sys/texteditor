@@ -3,8 +3,6 @@ import styled from 'styled-components'
 export const Container = styled.div`
   background-color: #25262c;
   padding: 20px;
-  background-size: cover;
-  height: 100vh;
 `
 
 export const MainHeading = styled.h1`
@@ -30,6 +28,10 @@ export const Button = styled.button`
   border: none;
   padding: 5px;
   cursor: pointer;
+
+  &:hover {
+    background-color: ${props => (props.active ? '#faff00' : '#dfe2e8')};
+  }
 `
 
 export const StyledTextArea = styled.textarea`

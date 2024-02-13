@@ -1,5 +1,7 @@
 import {Component} from 'react'
-import {VscBold, GoItalic, AiOutlineUnderline} from 'react-icons/all'
+import {VscBold} from 'react-icons/vsc'
+import {GoItalic} from 'react-icons/go'
+import {AiOutlineUnderline} from 'react-icons/ai'
 import {
   Container,
   MainHeading,

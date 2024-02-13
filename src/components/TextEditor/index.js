@@ -1,5 +1,4 @@
-// TextEditor.js
-import {useState} from 'react'
+import {Component} from 'react'
 import {VscBold, GoItalic, AiOutlineUnderline} from 'react-icons/all'
 import {
   Container,
@@ -9,65 +8,74 @@ import {
   ButtonListItem,
   Button,
   StyledTextArea,
-} from './stylesComponents'
+} from './styledComponents'
 
-const TextEditor = () => {
-  const [boldActive, setBoldActive] = useState(false)
-  const [italicActive, setItalicActive] = useState(false)
-  const [underlineActive, setUnderlineActive] = useState(false)
-
-  const handleBoldClick = () => {
-    setBoldActive(prevState => !prevState)
+class TextEditor extends Component {
+  state = {
+    boldActive: false,
+    italicActive: false,
+    underlineActive: false,
   }
 
-  const handleItalicClick = () => {
-    setItalicActive(prevState => !prevState)
+  handleBoldClick = () => {
+    this.setState(prevState => ({boldActive: !prevState.boldActive}))
   }
 
-  const handleUnderlineClick = () => {
-    setUnderlineActive(prevState => !prevState)
+  handleItalicClick = () => {
+    this.setState(prevState => ({italicActive: !prevState.italicActive}))
   }
 
-  return (
-    <Container>
-      <MainHeading>Text Editor</MainHeading>
-      <Image src="your-image-url.jpg" alt="text editor" />
-      <ButtonList>
-        <ButtonListItem>
-          <Button
-            active={boldActive}
-            onClick={handleBoldClick}
-            data-testid="bold"
-          >
-            <VscBold />
-          </Button>
-        </ButtonListItem>
-        <ButtonListItem>
-          <Button
-            active={italicActive}
-            onClick={handleItalicClick}
-            data-testid="italic"
-          >
-            <GoItalic />
-          </Button>
-        </ButtonListItem>
-        <ButtonListItem>
-          <Button
-            active={underlineActive}
-            onClick={handleUnderlineClick}
-            data-testid="underline"
-          >
-            <AiOutlineUnderline />
-          </Button>
-        </ButtonListItem>
-      </ButtonList>
-      <StyledTextArea
-        boldActive={boldActive}
-        italicActive={italicActive}
-        underlineActive={underlineActive}
-      />
-    </Container>
-  )
+  handleUnderlineClick = () => {
+    this.setState(prevState => ({underlineActive: !prevState.underlineActive}))
+  }
+
+  render() {
+    const {boldActive, italicActive, underlineActive} = this.state
+
+    return (
+      <Container>
+        <MainHeading>Text Editor</MainHeading>
+        <Image
+          src="https://assets.ccbp.in/frontend/react-js/text-editor-img.png"
+          alt="text editor"
+        />
+        <ButtonList>
+          <ButtonListItem>
+            <Button
+              active={boldActive}
+              onClick={this.handleBoldClick}
+              data-testid="bold"
+            >
+              <VscBold />
+            </Button>
+          </ButtonListItem>
+          <ButtonListItem>
+            <Button
+              active={italicActive}
+              onClick={this.handleItalicClick}
+              data-testid="italic"
+            >
+              <GoItalic />
+            </Button>
+          </ButtonListItem>
+          <ButtonListItem>
+            <Button
+              active={underlineActive}
+              onClick={this.handleUnderlineClick}
+              data-testid="underline"
+            >
+              <AiOutlineUnderline />
+            </Button>
+          </ButtonListItem>
+        </ButtonList>
+        <StyledTextArea
+          boldActive={boldActive}
+          italicActive={italicActive}
+          underlineActive={underlineActive}
+        />
+      </Container>
+    )
+  }
 }
 
 export default TextEditor
